@@ -82,6 +82,7 @@ NSString* appDataFolder;
                            return nil;
                        }
 
+		// https://github.com/swisspol/GCDWebServer/issues/44
 		if ([[fileLocation pathExtension] caseInsensitiveCompare:@"mp4"] == NSOrderedSame) {
 				GCDWebServerFileResponse* response = [GCDWebServerFileResponse responseWithFile:fileLocation byteRange:request.byteRange];
 				[response setValue:@"bytes" forAdditionalHeader:@"Accept-Ranges"];
