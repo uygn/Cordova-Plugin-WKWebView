@@ -81,6 +81,12 @@ NSString* appDataFolder;
                        if (![[NSFileManager defaultManager] fileExistsAtPath:fileLocation]) {
                            return nil;
                        }
+
+		if ([[fileLocation pathExtension] caseInsensitiveCompare:@"mp4"] == NSOrderedSame) {
+				GCDWebServerFileResponse* response = [GCDWebServerFileResponse responseWithFile:fileLocation byteRange:request.byteRange];
+				[response setValue:@"bytes" forAdditionalHeader:@"Accept-Ranges"];
+				return response;
+		}
                          
                        return [GCDWebServerFileResponse responseWithFile:fileLocation];
                      }
